@@ -1,0 +1,7 @@
+{
+  "name": "arabic-timebank",
+  "version": "1.0.0",
+  "dependencies": {
+    "telegraf": "^4.0.0"
+  }
+}
