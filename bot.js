@@ -1,19 +1,15 @@
 const { Telegraf } = require('telegraf');
+const express = require('express');
+
+// تهيئة البوت
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
+// الأمر الأساسي
 bot.start((ctx) => {
   ctx.reply('🕒 أهلًا بك في بنك الوقت!');
 });
 
-// أضف المزيد من الأوامر هنا لاحقًا
-
-bot.launch({
-  webhook: {
-    domain: process.env.WEBHOOK_URL,
-    port: process.env.PORT
-  }
-});
-const express = require('express');
+// تهيئة السيرفر
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -21,6 +17,10 @@ app.get('/', (req, res) => {
   res.send('✅ نظام بنك الوقت يعمل بنجاح!');
 });
 
+// تشغيل كل شيء
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`🟢 السيرفر يعمل على المنفذ ${port}`);
+  bot.launch().then(() => {
+    console.log('🟢 بوت التيليجرام يعمل!');
+  });
 });
