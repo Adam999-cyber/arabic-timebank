@@ -1,52 +1,39 @@
-const { Telegraf } = require('telegraf');
 const express = require('express');
+const { Telegraf } = require('telegraf');
 
-// تهيئة البوت
-const bot = new Telegraf(process.env.BOT_TOKEN);
-
-// الأمر الأساسي
-bot.start((ctx) => {
-  ctx.reply('🕒 أهلًا بك في بنك الوقت!');
-});
-
-// تهيئة السيرفر
 const app = express();
+const bot = new Telegraf(process.env.BOT_TOKEN);
 const port = process.env.PORT || 3000;
 
+// Middleware أساسي
+app.use(express.json());
+
+// Route رئيسي
 app.get('/', (req, res) => {
   res.send('✅ نظام بنك الوقت يعمل بنجاح!');
 });
 
-// تشغيل كل شيء
-app.listen(port, () => {
-  console.log(`🟢 السيرفر يعمل على المنفذ ${port}`);
-  bot.launch().then(() => {
-    console.log('🟢 بوت التيليجرام يعمل!');
-  });
+// Webhook للبوت
+app.post('/api/webhook', (req, res) => {
+  try {
+    bot.handleUpdate(req.body, res);
+    res.status(200).send('OK');
+  } catch (error) {
+    console.error('Webhook error:', error);
+    res.status(200).send('OK');
+  }
 });
-const { Telegraf } = require('telegraf');
-const bot = new Telegraf(process.env.BOT_TOKEN);
 
-// كود البوت الأساسي
+// أمر Start للبوت
 bot.start((ctx) => {
   ctx.reply('🕒 أهلًا بك في بنك الوقت!');
 });
 
-const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000;
-
-// Route أساسي لإصلاح خطأ 404
-app.get('/', (req, res) => {
-  res.send('✅ نظام بنك الوقت يعمل بنجاح!');
-});
-
-// Webhook route للبوت
-app.post('/api/webhook', express.json(), (req, res) => {
-  // كود معالجة رسائل التليجرام هنا
-  res.status(200).send('OK');
-});
-
+// تشغيل الخادم
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`✅ Server running on port ${port}`);
+  console.log(`✅ Bot is ready`);
 });
+
+// التصدير للتطوير المحلي
+module.exports = app;
