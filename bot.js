@@ -1,3 +1,9 @@
+/********* إعدادات بوت بنك الوقت  *********/
+const BOT_TOKEN = "ضع_توكن_البوت_هنا"; // 🔑 من @BotFather
+const GEMINI_KEY = "ضع_مفتاح_Gemini_هنا"; // 🔑 من Google AI Studio
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/1YJdoyPjRdEmMq7M7issDNeMQ58EBz8dS6-MSA9wuuNU/edit"; // 📊 رابط جدولك
+/***************************************************/
+
 const express = require('express');
 const { Telegraf } = require('telegraf');
 
