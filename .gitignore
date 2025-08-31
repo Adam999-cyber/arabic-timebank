@@ -50,7 +50,6 @@ jspm_packages/
 .idea/
 *.swp
 *.swo
-*~
 
 # OS generated files
 .DS_Store
