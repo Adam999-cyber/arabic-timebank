@@ -1,22 +1,16 @@
-# نظام بنك الوقت العربي
+# Arabic TimeBank Bot
 
-مشروع بوت تليجرام لإدارة بنك الوقت باللغة العربية.
+A Telegram bot for managing time banking in Arabic.
 
-## المتطلبات
+## Setup
 
-- Node.js
-- حساب بوت في تليجرام
-- مفتاح Google Gemini AI
+1. Get bot token from @BotFather
+2. Get Gemini API key from Google AI Studio
+3. Update the keys in bot.js
 
-## التشغيل
+## Run
 
-```bash
+```
 npm install
 npm start
 ```
-
-## الإعداد
-
-1. احصل على توكن البوت من @BotFather
-2. احصل على مفتاح Gemini من Google AI Studio
-3. أضف المفاتيح في ملف bot.js
